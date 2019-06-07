@@ -24,22 +24,30 @@ In this challenge, create a web page that presents a styled list of Star Wars ch
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
-- [ ] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
+- [X] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
 
-- [ ] What does it mean to _think_ in react?
+React is a JS User Interface library, created by Facebook, that allows you to build powerful applications. Essentially, it's a tool that allows you to build components that manage their own state which creates complex UIs. (Also lets you pass data through app while keeping state out of the DOM.)
 
-- [ ] Describe state.
+- [X] What does it mean to _think_ in react?
 
-- [ ] Describe props.
+Thinking in react is a multistep process. First, one must break the user interface into a hierarchy of components. (Draw boxes around components - you know something should be a component if it has one responsibility.) Second, you build a static version in react (meaning no interactivity (or state).) Third, figure out the minimal representation of the state an app needs. Key questions: Is it passed in from parent through props (probably not state). Is it unchanged over time (probably not state). Can you compute based on other state or props (probably not state). Next, you figure out where state should be (React is a one-way flow of hierarchy, so you look at components that render things based on a state and find a common owner). Lastly, add inverse data flow (components update state).
+
+- [X] Describe state.
+
+State is an object, initialized and managed by/within component, that represents parts of the app that can change. State can be initialized by props.
+
+- [X] Describe props.
+
+Props are objects, passed to components, that are part of a component's configuration. They are unchangeable and should not be modified inside components. Essentially, props help write reusable code.
 
 ## Project Set Up
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add PM as collaborator on Github.
-- [ ] Clone your OWN version of Repo (Not Lambda's by mistake!)
-- [ ] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
+- [X] Create a forked copy of this project.
+- [X] Add PM as collaborator on Github.
+- [X] Clone your OWN version of Repo (Not Lambda's by mistake!)
+- [X] Create a new Branch on the clone: git checkout -b `<firstName-lastName>`.
 - [ ] Change directories into `./starwars` (`cd starwars`) and run `yarn install` to retrieve all needed dependencies.
 - [ ] Once you have installed the _node_modules_, run `yarn start or` to get your server up and running.
 - [ ] With the server up and running, open Chrome and head over to `localhost:3000` and view your beautiful app. Maybe it's not _that_ pretty... _yet_, your goal is to ensure this project becomes a thing of beauty.
