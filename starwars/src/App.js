@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import DispChar from './components/DispChar';
+import DispChars from './components/DispChars';
 import IndChars from './components/IndChars';
 
 
@@ -55,10 +55,10 @@ class App extends Component {
   render() {
     if (this.state.currentChar === null) {
       return (
-        <div className="App">
-          <h1 className="Header">React Wars</h1>
+        <div className='App'>
+          <h1 className='Header'>React Wars!</h1>
           <div className='charList'>
-            <DispChar chars ={this.state.starwarsChars} 
+            <DispChars chars={this.state.starwarsChars} 
               displayCurrentChar={this.displayCurrentChar} 
               displayNextPage={this.displayNextChar}
               displayPrevPage={this.displayPrevChar}
