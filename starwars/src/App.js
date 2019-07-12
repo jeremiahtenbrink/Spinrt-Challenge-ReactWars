@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
+import DispChars from './components/DispChars';
+import IndChars from './components/IndChars';
+
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      starwarsChars: []
+      starwarsChars: [],
+      currentChar: null,
+      nextChar: null,
+      prevChar: null
     };
   }
 
@@ -14,27 +20,62 @@ class App extends Component {
   }
 
   getCharacters = URL => {
-    // feel free to research what this code is doing.
-    // At a high level we are calling an API to fetch some starwars data from the open web.
-    // We then take that data and resolve it our state.
     fetch(URL)
       .then(res => {
         return res.json();
       })
       .then(data => {
-        this.setState({ starwarsChars: data.results });
+        this.setState({ starwarsChars: data.results, nextChar: data.next, prevChar: data.previous});
       })
       .catch(err => {
         throw new Error(err);
       });
   };
 
+
+  displayNextChar = event => {
+    if(this.state.nextChar !== null) {
+      const newData = this.getCharacters(this.state.nextChar);
+      console.log(newData);
+    }
+  }
+
+  displayPrevChar = event => {
+    if(this.state.prevChar !== null) {
+      const newData = this.getCharacters(this.state.prevChar);
+      console.log(newData);
+    }
+  }
+
+  displayChar = name => {
+    const currentChar = this.state.starwarsChar.find(char => char.name === name);
+    console.log(currentChar);
+  }
+
   render() {
-    return (
-      <div className="App">
-        <h1 className="Header">React Wars</h1>
-      </div>
-    );
+    if (this.state.currentChar === null) {
+      return (
+        <div className='App'>
+          <h1 className='Header'>React Wars!</h1>
+          <div className='charList'>
+            <DispChars chars={this.state.starwarsChars} 
+              displayCurrentChar={this.displayCurrentChar} 
+              displayNextPage={this.displayNextChar}
+              displayPrevPage={this.displayPrevChar}
+              nextPage={this.state.nextChar}
+              prevPage={this.state.prevChar}
+            />
+          </div>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div>
+          <IndChars backToList={this.backToList} character={this.state.currentChar} />
+        </div>
+      );
+    }
   }
 }
 
