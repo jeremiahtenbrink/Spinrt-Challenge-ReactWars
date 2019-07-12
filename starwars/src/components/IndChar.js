@@ -1,5 +1,4 @@
 import React from 'react';
-import './StarWars.scss';
 
 
 export const IndChars = props => {
@@ -21,5 +20,3 @@ export const IndChars = props => {
     </div>
   );
 }
-
-export default IndChars;

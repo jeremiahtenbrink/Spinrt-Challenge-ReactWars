@@ -1,5 +1,5 @@
 import React from "react"
-import { Row, Col } from "react-awesome-styled-grid"
+import { Row } from "react-awesome-styled-grid"
 import styled from "styled-components"
 
 const Main = styled.div`
@@ -41,44 +41,29 @@ const CardSubtitle = styled.div`
 	}
 `
 
-export const Characters = props => {
+export const Character = props => {
 	return (
 		<Main>
-			<Row>
-				{result.map(item => (
-					<Col xs={4} md={2} key={item.round}>
-						<Card>
-							<CardBody>
-								<CardTitle>{item.raceName}</CardTitle>
-								<CardSubtitle>{item.Circuit.circuitName}</CardSubtitle>
-								<CardSubtitle>
-									<a href={item.Results[0].Driver.url} target='_blank' rel='noopener noreferrer'>
-										<span role='img' aria-label='Race Winner'>
-											🏎️
-										</span>
-										{item.Results[0].Driver.familyName + " " + item.Results[0].Driver.givenName}
-										{item.Results[0].Driver.familyName + " " + item.Results[0].Driver.givenName ===
-										winner ? (
-											<span role='img' aria-label='Race Winner'>
-												{" "}
-												🏆🏆🏆{" "}
-											</span>
-										) : (
-											""
-										)}
-									</a>
-								</CardSubtitle>
-								<CardSubtitle>
-									<span role='img' aria-label='Race Winner'>
-										⏲
-									</span>
-									{item.Results[0].Time.time}
-								</CardSubtitle>
-							</CardBody>
-						</Card>
-					</Col>
-				))}
-			</Row>
+			<Card>
+				<CardBody>
+					<Row>
+						<CardTitle>{props.char.name}</CardTitle>
+					</Row>
+					<Row>
+						<CardSubtitle>
+						<div class='char-list'>
+							<p>Height: {props.char.height}</p>
+							<p>Mass: {props.char.mass}</p>
+							<p>Hair Color: {props.char.hair_color}</p>
+							<p>Skin Color: {props.char.skin_color}</p>
+							<p>Eye Color: {props.char.eye_color}</p>
+							<p>Birth Year: {props.char.birth_year}</p>
+							<p>Gender: {props.char.gender}</p>
+						</div>
+						</CardSubtitle>
+					</Row>
+				</CardBody>
+			</Card>
 		</Main>
 	)
 }
