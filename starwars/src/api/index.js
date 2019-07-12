@@ -37,7 +37,7 @@ const useCallApi = ({ url, type }) => {
 	// componentDidMount
 	// second param tells the effect to run again once changed
 	useEffect(() => {
-		if (type === "https://swapi.co/api/people") {
+		if (type === "get") {
 			getData({
 				url,
 				setDataInfo

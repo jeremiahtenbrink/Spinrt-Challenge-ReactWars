@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { DataContext } from '../../context'
 
-const DummyContextReader = () => {
+export const DummyContextReader = () => {
   const { data, loading, error } = useContext(DataContext)
 
   return (
@@ -16,5 +16,3 @@ const DummyContextReader = () => {
     </div>
   )
 }
-
-export default DummyContextReader

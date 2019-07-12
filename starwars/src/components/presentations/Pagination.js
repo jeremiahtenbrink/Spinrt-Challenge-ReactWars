@@ -1,15 +1,13 @@
 import React, { useState, useContext } from "react"
-import PaginationBtn from "./PaginationBtn"
+import { PaginationBtn } from "./PaginationBtn"
 import { DataContext } from "../../context"
 
-const Pagination = ({ setUrl }) => {
+export const Pagination = ({ setUrl }) => {
 	const [page, setPage] = useState(1)
 	const { data } = useContext(DataContext)
 
 	const updateUrl = (newUrl, pageNum) => () => {
 		setUrl(newUrl)
-		// this works because it's a primative type (int)
-		// otherwise we'd have to make a copy (state is immutable)
 		setPage(page + pageNum)
 	}
 
@@ -28,5 +26,3 @@ const Pagination = ({ setUrl }) => {
 		</>
 	)
 }
-
-export default Pagination
