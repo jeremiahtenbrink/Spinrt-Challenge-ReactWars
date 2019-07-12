@@ -1,24 +1,48 @@
-import React, { useState } from "react"
-import { useCallApi } from "./api"
-import { DataContext } from "./context"
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './App.css';
 
-import { Pagination } from "./components/presentations/Pagination"
-import { ShowData } from "./components/data/ShowData"
-import "./App.css"
+import { Container, Divider } from 'semantic-ui-react';
+
+import {StarCharacterCompMap} from './components/StarCharacterCompMap';
+
 
 const App = () => {
-	const [url, setUrl] = useState("https://swapi.co/api/people/?page=1")
-	const data = useCallApi({ url, type: "get" })
+	// Try to think through what state you'll need for this app before starting. Then build out
+	// the state properties here.
+	const [starChar, setStarChar] = useState([]);
+	console.log(starChar)
+
+	// Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
+	// side effect in a component, you want to think about which state and/or props it should
+	// sync up with, if any.
+	useEffect(() => {
+		axios
+
+			.get("https://swapi.co/api/people/")
+			.then(res => {
+				console.log("response data", res)
+				setStarChar(res.data.results)
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, [])
 
 	return (
-		<div className='App'>
-			<h3>Star Wars Characters!</h3>
-			<DataContext.Provider value={{ ...data }}>
-				<Pagination setUrl={setUrl} />
-				<ShowData />
-			</DataContext.Provider>
+		<div className="App">
+
+			<Container>
+				<h1 className="title"> React Wars: <br />M ay The Code Be With You ⚔︎</h1>
+				<Divider />
+			</Container>
+
+
+			{starChar.length ? <StarCharacterCompMap characters={starChar} /> : <h1>loading</h1>}
+
 		</div>
-	)
+	);
 }
 
-export default App
+
+export default App;
